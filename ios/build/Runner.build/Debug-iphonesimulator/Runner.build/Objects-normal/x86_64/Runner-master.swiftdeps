@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)"
+options: "c494e65a2694cf09fa06ed4e35c42944404da44b98b4b2c1c499c4b9a0d554e0"
+build_start_time: [1652862930, 766847133]
+build_end_time: [1652862931, 422789096]
+inputs:
+  "/Users/macbookpro/Mitek_Project/FlutterApp/midesk/ios/Runner/AppDelegate.swift": [1650309730, 0]
