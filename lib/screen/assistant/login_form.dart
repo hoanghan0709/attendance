@@ -1,20 +1,18 @@
-// ignore_for_file: deprecated_member_use
-import 'package:dio/dio.dart';
+  
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:midesk/bloc/login_bloc/login_bloc.dart';
 import 'package:midesk/bloc/login_bloc/login_event.dart';
 import 'package:midesk/bloc/login_bloc/login_state.dart';
-import 'package:midesk/respository/user_resp.dart';
+import 'package:midesk/respository/user_repository.dart';
 import 'package:midesk/screen/assistant/camera_qrcode.dart';
 import '../../theme/image.dart';
 import 'package:midesk/accessories/style/themes.dart' as Style;
-import 'package:flutter/cupertino.dart';
-import '../home_screen/home_screen.dart';
+import 'package:flutter/cupertino.dart'; 
 
 class LoginForm extends StatefulWidget {
   final UserRepository userRepository;
-  LoginForm({Key key, @required this.userRepository})
+  LoginForm({  Key? key,   required this.userRepository})
       : assert(userRepository != null),
         super(key: key);
 
@@ -61,7 +59,7 @@ class _LoginFormState extends State<LoginForm> {
   void LoginSumbit() async {}
 
   void onSignInClicked() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       NavigatorShow();
     }
   }
@@ -90,6 +88,7 @@ class _LoginFormState extends State<LoginForm> {
       }
     }, child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Form(
             key: _formKey,
             child: Padding(
@@ -220,9 +219,9 @@ class _LoginFormState extends State<LoginForm> {
                             checkColor: Colors.white,
                             value: _value,
                             shape: const CircleBorder(),
-                            onChanged: (bool value) {
+                            onChanged: (bool? value) {
                               setState(() {
-                                _value = value;
+                                _value = value!;
                               });
                             },
                           ),

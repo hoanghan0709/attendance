@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'dart:convert' show jsonDecode;
-import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserRepository {
   static String mainUrl = "https://api-dev2021.midesk.vn/api/v3";
   var loginUrl = '$mainUrl/auth/login';
 
-  final FlutterSecureStorage storage = new FlutterSecureStorage();
+  final FlutterSecureStorage storage = FlutterSecureStorage();
   final Dio _dio = Dio();
 
   Future<bool> hasToken() async {
@@ -26,6 +26,9 @@ class UserRepository {
   Future<void> deleteToken() async {
     storage.delete(key: 'token');
     storage.deleteAll();
+  }
+  Future<void> getToken()  async {
+    storage.read(key: 'token');
   }
 
   Future<String> login(String username, String password) async {

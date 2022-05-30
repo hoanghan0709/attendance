@@ -1,5 +1,5 @@
 String validateEmail(String value) {
-  String _msg;
+  String? _msg;
   // ignore: unnecessary_new
   RegExp regex = new RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
@@ -8,5 +8,5 @@ String validateEmail(String value) {
   } else if (!regex.hasMatch(value)) {
     _msg = "Please provide a valid email address";
   }
-  return _msg;
+  return _msg!;
 }

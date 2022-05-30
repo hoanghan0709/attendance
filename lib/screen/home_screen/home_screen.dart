@@ -1,43 +1,115 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:midesk/bloc/auth_bloc/auth_bloc.dart';
-import 'package:midesk/bloc/auth_bloc/auth_event.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-//import '../../bloc/authevent.dart';
-import '../assistant/login_form.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Customer_screen.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Nofiti_screen.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Search_screen.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Setting_screen.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Ticket_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+  final Widget ticket = TicketScreen();
+  int bottomSelectedIndex = 0;
+  final Widget search = SearchScreen();
+  final Widget customer = CustomerScreen();
+  final Widget notifi = NotifiScreen();
+  final Widget setting = SettingScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
+      bottomNavigationBar: SizedBox(
+        height: 70.0,
+        child: BottomNavigationBar(
+            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+            unselectedItemColor: Colors.black,
+            type: BottomNavigationBarType.fixed,
+            elevation: 10.0,
+            selectedItemColor: Colors.blue,
+            backgroundColor: Colors.white,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                label: 'Ticket',
+                icon: SvgPicture.asset(
+                  'assets/icon/ticket-item.svg',
+                  width: 25.0,
+                  height: 25.0,
+                ),
+              ),
+              BottomNavigationBarItem(
+                  label: 'Search',
+                  icon: SvgPicture.asset('assets/icon/search-item.svg',
+                      width: 25.0, height: 25.0)),
+              BottomNavigationBarItem(
+                  label: 'Customer',
+                  icon: SvgPicture.asset('assets/icon/customer-item.svg',
+                      width: 25.0, height: 25.0)),
+              BottomNavigationBarItem(
+                  label: 'Notification',
+                  icon: SvgPicture.asset('assets/icon/notification-item.svg',
+                      width: 25.0, height: 25.0)),
+              BottomNavigationBarItem(
+                  label: 'Setting',
+                  icon: SvgPicture.asset('assets/icon/setting-item.svg',
+                      width: 25.0, height: 25.0)),
+            ],
+            currentIndex: bottomSelectedIndex,
+            onTap: (index) {
+              setState(() {
+                bottomSelectedIndex = index;
+                selectedIndex = index;
+              });
+            }),
       ),
-      body: Container(
-        child: Center(
-            child: RaisedButton(
-          child: const Text('logout'),
-          onPressed: () async {
-            BlocProvider.of<AuthenticationBloc>(context).add(
-              LoggedOut(),
-            );
-            // Navigator.pushAndRemoveUntil(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => LoginForm()),
-            //     (route) => false);
-            // SharedPreferences prefs = await SharedPreferences.getInstance();
-            // prefs?.clear();
-          },
-        )),
-      ),
+      body: _buildBody(),
     );
+  }
+
+  Text _customeText(String txt) {
+    return Text(
+      txt,
+      style: TextStyle(fontWeight: FontWeight.bold),
+    );
+  }
+
+  _buildBody() {
+    if (this.selectedIndex == 0) {
+      return TicketScreen();
+    } else if (this.selectedIndex == 1) {
+      return SearchScreen();
+    } else if (this.selectedIndex == 2) {
+      return CustomerScreen();
+    } else if (this.selectedIndex == 3) {
+      return NotifiScreen();
+    } else if (this.selectedIndex == 4) {
+      return SettingScreen();
+    } else {
+      return TicketScreen();
+    }
+
+    // return PageView(
+    //   children: [
+    //     TicketScreen(),
+    //     SearchScreen(),
+    //     CustomerScreen(),
+    //     NotifiScreen(),
+    //     SettingScreen()
+    //   ],
+    //   onPageChanged: (index) {
+    //     setState(() {
+    //       bottomSelectedIndex = index;
+    //       selectedIndex =index;
+    //     });
+    //   },
+    // );
   }
 }

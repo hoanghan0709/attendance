@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:midesk/respository/user_resp.dart';
+import 'package:midesk/respository/user_repository.dart';
 import 'package:midesk/screen/assistant/login_screen.dart';
 import 'package:midesk/screen/home_screen/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,7 +12,7 @@ import '../assistant/login_form.dart';
 
 class SplashScreen extends StatefulWidget {
 final UserRepository userRepository;
-  SplashScreen({Key key, @required this.userRepository})
+  SplashScreen({Key? key,  required this.userRepository})
       : super(key: key);
   
   @override
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String status = prefs.getString('keytoken');
+    String? status = prefs.getString('keytoken');
     if (status != null) {
       Navigator.pushAndRemoveUntil(
           context,
@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen(userRepository: userRepository)),
+        MaterialPageRoute(builder: (context) => LoginScreen(userRepository: userRepository )),
             (route) => false);
     }
   }

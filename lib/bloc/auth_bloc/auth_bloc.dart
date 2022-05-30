@@ -1,42 +1,43 @@
-import 'dart:async';
-
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:midesk/bloc/auth_bloc/auth_event.dart';
 import 'package:midesk/bloc/auth_bloc/auth_state.dart';
-import 'package:midesk/respository/user_resp.dart';
+import 'package:midesk/respository/user_repository.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
   final UserRepository userRepository;
-  
-  AuthenticationBloc({@required this.userRepository})
-      : assert(userRepository != null);
-  @override
-  AuthenticationState get initialState => AuthenticationUninitialized();
-  
-  @override
-  Stream<AuthenticationState> mapEventToState(
-    AuthenticationEvent event,
-  ) async* {
-    if (event is AppStarted) {
-      final bool hasToken = await userRepository.hasToken();
-      if (hasToken) {
-        yield AuthenticationAuthenticated();
-      } else {
-        yield AuthenticationUnauthenticated();
-      }
+
+  AuthenticationBloc({ required this.userRepository})
+      : super(AuthenticationUninitialized()) {
+    on<AppStarted>(appStarted);
+    on<LoggedIn>(loggedIn);
+    on<LoggedOut>(loggedOut);
+  }
+  void appStarted(AppStarted event, Emitter<AuthenticationState> emit) async {
+    final bool hasToken = await userRepository.hasToken();
+    if (hasToken) {
+      emit(AuthenticationAuthenticated());
+    } else {
+      emit(AuthenticationUnauthenticated());
     }
 
-    if (event is LoggedIn) {
-      yield AuthenticationLoading();
-      await userRepository.persistToken(event.token);
-      yield AuthenticationAuthenticated();
-    }
+  }
 
+  void loggedOut(LoggedOut event, Emitter<AuthenticationState> emit) async {
     if (event is LoggedOut) {
-      yield AuthenticationLoading();
+      emit(AuthenticationLoading());
       await userRepository.deleteToken();
-      yield AuthenticationUnauthenticated();
+      emit(AuthenticationUnauthenticated());
+    }
+  }
+
+  void loggedIn(LoggedIn event, Emitter<AuthenticationState> emit) async {
+    if (event is LoggedIn) {
+      emit(AuthenticationLoading());
+      await userRepository.persistToken(event.token);
+      emit(AuthenticationAuthenticated());
     }
   }
 }
+ 

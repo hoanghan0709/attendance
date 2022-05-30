@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:json_annotation/json_annotation.dart';
 import 'Data.dart';
 
