@@ -63,6 +63,8 @@ class Ticket {
 //                     "private": 0,
 //                     "file_name": null
 //                 }
+ 
+   
   Ticket(
       {required this.id,
       required this.ticket_id,

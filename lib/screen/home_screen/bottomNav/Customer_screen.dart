@@ -15,66 +15,68 @@ class _CustomerScreenState extends State<CustomerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Padding(
-            padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
-            child: Text(
-              'Customer',
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        child: Container( margin: EdgeInsets.only(top: 10.0),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Padding(
+              padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+              child: Text(
+                'Customer',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          Container(
-            height: 60.0,
-            padding:
-                const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
-            child: TextFormField(
-              cursorColor: Colors.black,
-              decoration: InputDecoration(
-                  hintText: 'Seach',
-                  contentPadding: const EdgeInsets.fromLTRB(20.0, 12.0, 0, 20),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: BorderSide(
-                      color: colors,
-                      width: 2.0,
+            Container(
+              height: 60.0,
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
+              child: TextFormField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                    hintText: 'Seach',
+                    contentPadding: const EdgeInsets.fromLTRB(20.0, 12.0, 0, 20),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: colors,
+                        width: 2.0,
+                      ),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: BorderSide(
-                      color: colors,
-                      width: 2.0,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: colors,
+                        width: 2.0,
+                      ),
                     ),
-                  ),
-                  fillColor: colors,
-                  filled: true,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  suffixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.black87,
-                  )),
+                    fillColor: colors,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    suffixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.black87,
+                    )),
+              ),
             ),
-          ),
-          Divider(
-            thickness: 1,
-          ),
-          ItemCustomer(
-            title: 'DEC',
-            name: 'D',
-            description: 'Khách hàng Nguyễn Văn Sinh , AABBCCĐDEEFF ',
-          ),
-          ItemCustomer(
-            title: 'SAQ',
-            name: 'S',
-            description: 'Khách hàng Đinh Công Minh Thạnh',
-          ),
-          ItemCustomer(
-            title: 'VTT',
-            name: 'V',
-            description: 'Khách hàng Trần Thị Thanh Vy',
-          )
-        ]),
+            Divider(
+              thickness: 1,
+            ),
+            ItemCustomer(
+              title: 'DEC',
+              name: 'D',
+              description: 'Khách hàng Nguyễn Văn Sinh , AABBCCĐDEEFF ',
+            ),
+            ItemCustomer(
+              title: 'SAQ',
+              name: 'S',
+              description: 'Khách hàng Đinh Công Minh Thạnh',
+            ),
+            ItemCustomer(
+              title: 'VTT',
+              name: 'V',
+              description: 'Khách hàng Trần Thị Thanh Vy',
+            )
+          ]),
+        ),
       ),
     );
   }

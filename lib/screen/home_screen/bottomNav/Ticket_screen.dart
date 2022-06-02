@@ -24,7 +24,7 @@ class TicketScreen extends StatefulWidget {
 
 class _TicketScreenState extends State<TicketScreen> {
   var api = ApiProvider();
-   
+
   @override
   void initState() {
     // TODO: implement initState
@@ -33,8 +33,13 @@ class _TicketScreenState extends State<TicketScreen> {
     BlocProvider.of<TicketBloc>(context).add(onLoadingTicket());
   }
 
+// ignore: prefer_typing_uninitialized_variables
+  var size, width, height;
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -65,7 +70,7 @@ class _TicketScreenState extends State<TicketScreen> {
           child: IconButton(
               onPressed: () {},
               icon: SvgPicture.asset(
-                'assets/icon/comment-com.svg',
+                'assets/icon/filter-home.svg',
                 width: 20.0,
                 height: 20.0,
               )),
@@ -128,13 +133,16 @@ class _TicketScreenState extends State<TicketScreen> {
               SizedBox(
                 width: 150.0,
               ),
+               
               Expanded(flex: 2, child: Item_DropDown(value: '')),
               Expanded(
                 flex: 1,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Item_DropDown(value: 'null' );
+                    },
                     icon: SvgPicture.asset(
-                      'assets/icon/comment-com.svg',
+                      'assets/icon/filter-home.svg',
                       width: 20.0,
                       height: 20.0,
                     )),
@@ -161,10 +169,13 @@ class _TicketScreenState extends State<TicketScreen> {
           ),
           Expanded(
             flex: 9,
-            child: ListView.builder( 
+            child: ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                thickness: 1,
+              ),
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return ItemTicket( 
+                return ItemTicket(
                   title: 'Tin nhắn từ Facebook',
                   description: 'description',
                   dateTime: 'dateTime',

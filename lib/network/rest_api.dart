@@ -8,7 +8,7 @@ class DioHttpProvider {
       {Map<String, dynamic>? params, Function(dynamic)? onError}) async {
     print("dioGetRequest $urlPath");
     String token =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGktZGV2MjAyMS5taWRlc2sudm5cL2FwaVwvdjNcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUzOTAzOTQ5LCJleHAiOjE2NTM5MjE5NDksIm5iZiI6MTY1MzkwMzk0OSwianRpIjoidWhZcXJLclRzM2diVFdWUyIsInN1YiI6MTAzNCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.BiWHwOt8ZM_3QVgVgjjplt8W0squ9BcR2c0ya5cW-MQ';
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGktZGV2MjAyMS5taWRlc2sudm5cL2FwaVwvdjNcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUzOTkyODg4LCJleHAiOjE2NTQwMTA4ODgsIm5iZiI6MTY1Mzk5Mjg4OCwianRpIjoiTEVwc0lXNTNQRjB3a1UxSyIsInN1YiI6MTAzNCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.ak5kCe-keeXnSlY_lwIlnQmPVLHmuTneqBErOP2uWrI';
     var responseJson;
     Map<String, String> headers = {
       'Content-type': 'application/json',

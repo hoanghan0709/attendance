@@ -24,7 +24,8 @@ class ItemTicket extends StatelessWidget {
     Color colos = Color.fromARGB(255, 167, 167, 167);
     // double c_width = MediaQuery.of(context).size.width * 0.5;
 
-    return Card(
+    return Container(
+      padding: EdgeInsets.only(left: 10.0, right: 10.0),
       child: Row(children: [
         const CircleAvatar(
           backgroundColor: Colors.blue,
@@ -55,7 +56,7 @@ class ItemTicket extends StatelessWidget {
                 Container(
                   // width: c_width,
                   child: Text(description,
-                      maxLines: 2, style: TextStyle(color: colos)),
+                      maxLines: 1, style: TextStyle(color: colos)),
                 )
               ],
             ),

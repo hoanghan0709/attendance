@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'package:flutter/cupertino.dart';
+
 String validateEmail(String value) {
   String? _msg;
   // ignore: unnecessary_new
@@ -10,3 +14,4 @@ String validateEmail(String value) {
   }
   return _msg!;
 }
+ 

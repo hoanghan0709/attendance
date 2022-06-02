@@ -43,7 +43,7 @@ class ItemCustomer extends StatelessWidget {
                       Text(
                         description,
                         style: TextStyle(color: Colors.grey),
-                        maxLines: 2,
+                        maxLines: 1,
                       )
                     ],
                   ),

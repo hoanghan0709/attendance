@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:midesk/screen/home_screen/bottomNav/Customer_screen.dart';
+import 'package:midesk/screen/home_screen/bottomNav/Messeage_screen.dart';
 import 'package:midesk/screen/home_screen/bottomNav/Nofiti_screen.dart';
 import 'package:midesk/screen/home_screen/bottomNav/Search_screen.dart';
 import 'package:midesk/screen/home_screen/bottomNav/Setting_screen.dart';
@@ -29,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: SizedBox(
         height: 70.0,
         child: BottomNavigationBar(
+            selectedFontSize: 14.0,
+            unselectedFontSize: 14.0,
             selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
             unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
             unselectedItemColor: Colors.black,
@@ -39,28 +42,44 @@ class _HomeScreenState extends State<HomeScreen> {
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 label: 'Ticket',
-                icon: SvgPicture.asset(
-                  'assets/icon/ticket-item.svg',
-                  width: 25.0,
-                  height: 25.0,
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: SvgPicture.asset(
+                    'assets/icon/ticket-item.svg',
+                    width: 25.0,
+                    height: 25.0,
+                  ),
                 ),
               ),
               BottomNavigationBarItem(
-                  label: 'Search',
-                  icon: SvgPicture.asset('assets/icon/search-item.svg',
-                      width: 25.0, height: 25.0)),
+                  label: 'Message',
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+
+                      child: SvgPicture.asset('assets/icon/chat.svg',
+                        width: 25.0, height: 25.0),
+                  )),
               BottomNavigationBarItem(
                   label: 'Customer',
-                  icon: SvgPicture.asset('assets/icon/customer-item.svg',
-                      width: 25.0, height: 25.0)),
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: SvgPicture.asset('assets/icon/customer-item.svg',
+                        width: 25.0, height: 25.0),
+                  )),
               BottomNavigationBarItem(
                   label: 'Notification',
-                  icon: SvgPicture.asset('assets/icon/notification-item.svg',
-                      width: 25.0, height: 25.0)),
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: SvgPicture.asset('assets/icon/notification-item.svg',
+                        width: 25.0, height: 25.0),
+                  )),
               BottomNavigationBarItem(
                   label: 'Setting',
-                  icon: SvgPicture.asset('assets/icon/setting-item.svg',
-                      width: 25.0, height: 25.0)),
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: SvgPicture.asset('assets/icon/setting-item.svg',
+                        width: 25.0, height: 25.0),
+                  )),
             ],
             currentIndex: bottomSelectedIndex,
             onTap: (index) {
@@ -85,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (this.selectedIndex == 0) {
       return TicketScreen();
     } else if (this.selectedIndex == 1) {
-      return SearchScreen();
+      return MessageScreen();
     } else if (this.selectedIndex == 2) {
       return CustomerScreen();
     } else if (this.selectedIndex == 3) {
