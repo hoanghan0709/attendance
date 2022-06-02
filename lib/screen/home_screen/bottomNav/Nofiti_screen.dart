@@ -3,7 +3,7 @@ import '../widget_item/item_notification.dart';
 
 class NotifiScreen extends StatefulWidget {
   const NotifiScreen({Key? key}) : super(key: key);
-@import url(https://fonts.googleapis.com/css?family=Kdam+Thmor+Pro:regular);
+
   @override
   State<NotifiScreen> createState() => _NotifiScreenState();
 }
@@ -21,7 +21,7 @@ class _NotifiScreenState extends State<NotifiScreen> {
       margin: EdgeInsets.only(top: 10.0),
       child: Stack(children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Padding(
+           const  Padding(
               padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
               child: Text(
                 'Notifications',
