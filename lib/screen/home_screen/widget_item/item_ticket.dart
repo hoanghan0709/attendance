@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ItemTicket extends StatelessWidget {
+  VoidCallback? callback;
   ItemTicket(
       {Key? key,
-      required this.id,
+   this.callback,     required this.id,
       required this.sdt,
       required this.dateTime,
       required this.description,
       required this.title,
       required this.status})
       : super(key: key);
-
+  
   final String dateTime;
   final String id;
   final String title;

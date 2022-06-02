@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widget_item/item_custome.dart';
-import '../widget_item/item_ticket.dart';
-import 'Setting_screen.dart';
+import '../widget_item/item_custome.dart'; 
 
 class CustomerScreen extends StatefulWidget {
   const CustomerScreen({Key? key}) : super(key: key);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:midesk/screen/home_screen/ticket/screen_details_ticket.dart';
 
 class NewTicketScreen extends StatefulWidget {
   const NewTicketScreen({Key? key}) : super(key: key);
@@ -13,185 +15,220 @@ class _NewTicketScreenState extends State<NewTicketScreen> {
   get onChanged => null;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Row(
-              children: [
-                BackButton(onPressed: () {
-                  Navigator.maybePop(context);
-                }),
-                const Text(
-                  'Phiếu mới',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                Expanded(
-                  child: IconButton(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      alignment: Alignment.centerRight,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.send,
-                        color: Color(0xFF847E7E),
-                      )),
-                )
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-            child: TextFormField(
-              controller: textPro,
-              decoration: InputDecoration(hintText: 'Tiêu đề'),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 15.0, top: 20.0),
-            child: Row(children: [
-              Expanded(
-                flex: 3,
-                child: InkWell(
-                  onTap: () {
-                    dialog(context);
-                  },
-                  child: Container(
-                    child: Row(children: const [
-                      Icon(
-                        Icons.add_circle,
-                        color: Colors.blue,
+    return SafeArea(
+        child: Scaffold(
+            bottomNavigationBar:
+                SingleChildScrollView(child: _buildBottom(context)),
+            body: Column(children: [
+              Container(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.maybePop(context);
+                        },
+                        icon: Icon(Icons.keyboard_backspace_rounded),
                       ),
-                      SizedBox(
-                        width: 15.0,
+                    ),
+                    const Expanded(
+                      flex: 5,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Created',
+                          style: TextStyle(
+                              fontSize: 24.0, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Text('Người yêu cầu')
-                    ]),
-                  ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: IconButton(
+                          padding: const EdgeInsets.all(10.0),
+                          alignment: Alignment.centerRight,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailTicketScreen()));
+                          },
+                          icon: SvgPicture.asset(
+                            'assets/icon/send_icon.svg',
+                            height: 20.0,
+                            width: 20.0,
+                          )),
+                    )
+                  ],
                 ),
               ),
-              Expanded(
-                  flex: 2,
-                  child: ElevatedButton(
-                      onPressed: () {}, child: Text('CHỈ ĐỊNH'))),
-              SizedBox(
-                width: 15.0,
+              const Divider(
+                thickness: 1,
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Text(
+                          'Title',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.amber,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Customer',
+                                style: TextStyle(fontSize: 15.0),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2.0),
+                                child: Text(
+                                  'create date',
+                                  style: TextStyle(fontSize: 13.0),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text('Propertices',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      TextButton(
+                        child: Text(
+                          'See more',
+                          style: TextStyle(color: Colors.blue, fontSize: 13),
+                        ),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          children: [
+                            Text('Status'),
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 5.0, right: 5.0),
+                                child: Text('open'),
+                              ),
+                              color: Colors.red,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [Text('Assignee'), Text('Name')],
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Priority'),
+                        Container(
+                          child: Text('Thấp'),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               )
-            ]),
+            ])));
+  }
+
+  Widget _buildBottom(BuildContext context) {
+    return Container(
+      height: 120.0,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Divider(
+            thickness: 1,
           ),
-          const SizedBox(
-            height: 10.0,
+          Expanded(
+            flex: 1,
+            child: TextFormField(
+              maxLines: 100,
+              decoration: InputDecoration(
+                  hintText: 'Write the answer',
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        'assets/icon/thunder-icon.svg',
+                        width: 17.0,
+                        height: 17.0,
+                      ))),
+            ),
           ),
-          const Divider(
-            thickness: 1.0,
-          ),
-          buildPriority(context),
-          buildStatus(context)
+          Expanded(
+              flex: 1,
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        'assets/icon/image-icon.svg',
+                        width: 22.0,
+                        height: 22.0,
+                      )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        'assets/icon/camera-icon.svg',
+                        width: 22.0,
+                        height: 22.0,
+                      )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        'assets/icon/file-icon.svg',
+                        width: 22.0,
+                        height: 22.0,
+                      ))
+                ],
+              ))
         ],
       ),
     );
-  }
-
-  Widget buildStatus(BuildContext tc) {
-    return InkWell(
-      onTap: () {
-        dialogPriority(tc);
-      },
-      child: Container(
-        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-        child: Row(children: [
-          Expanded(flex: 14, child: Text('Status')),
-          Expanded(
-              flex: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.red),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Mới'),
-                ),
-              )),
-        ]),
-      ),
-    );
-  }
-
-  Widget buildPriority(BuildContext tc) {
-    return InkWell(
-      onTap: () {
-        dialogPriority(tc);
-      },
-      child: Container(
-        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-        child: Row(children: [
-          Expanded(flex: 5, child: Text('Priority')),
-          Expanded(
-              flex: 2,
-              child: TextField(
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)),
-                    hintText: '-',
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white))),
-                controller: textPro,
-                readOnly: true,
-              ))
-        ]),
-      ),
-    );
-  }
-
-  dialogPriority(BuildContext tc) {
-    return showDialog(
-        context: tc,
-        builder: (tc) {
-          return AlertDialog(
-            title: Text("Priority"),
-            content: _builAlert(tc),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    setState(() {
-                      textPro = TextEditingController(text: 'abs');
-                    });
-                    Navigator.pop(tc);
-                  },
-                  child: Text('HỦY BỎ'))
-            ],
-          );
-        });
-  }
-
-  _builAlert(BuildContext context) {
-    bool groupvalue = false;
-    final bool value;
-    return Flex(
-      direction: Axis.horizontal,
-      children: const [
-        Radio(value: null, groupValue: null, onChanged: null),
-        Radio(value: null, groupValue: null, onChanged: null),
-      ],
-    );
-  }
-
-  dialog(BuildContext tc) {
-    return showDialog(
-        context: tc,
-        builder: (tc) {
-          return AlertDialog(
-            title: Text("My title"),
-            content: Text("This is my message."),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(tc);
-                  },
-                  child: Text('Ok'))
-            ],
-          );
-        });
   }
 }

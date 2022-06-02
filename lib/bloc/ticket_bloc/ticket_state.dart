@@ -13,9 +13,12 @@ class TicketInitial extends TicketState {
 }
 
 class TicketLoaded extends TicketState {
-  Future<ListTicket> tickets;
-  TicketLoaded({ required  this.tickets,
-  });
+  // Future<ListTicket> tickets;
+  // TicketLoaded({ required  this.tickets,
+  // });
+  // @override
+  // List<Object> get props => [];
+
   @override
   List<Object> get props => [];
 }

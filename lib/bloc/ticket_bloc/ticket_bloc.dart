@@ -13,8 +13,9 @@ class TicketBloc extends Bloc<TicketEvent, TicketState> {
   }
 
   void onLoading(onLoadingTicket event, Emitter<TicketState> emit) {
-      final api = ApiProvider();
+     // final api = ApiProvider();
     // emit(TicketLoaded(tickets: api.getAllTicket()));
-    emit(TicketLoaded(tickets:  api.getAllTicket()));
+///.. emit(TicketLoaded(tickets:  api.getAllTicket()));
+emit(TicketLoaded( ));
   }
 }

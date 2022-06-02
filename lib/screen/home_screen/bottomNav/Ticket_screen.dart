@@ -85,38 +85,41 @@ class _TicketScreenState extends State<TicketScreen> {
         if (state is TicketInitial) {
           return const CircularProgressIndicator();
         } else if (state is TicketLoaded) {
-          return FutureBuilder<ListTicket>(
-              future: api.getAllTicket(),
-              builder: (ctx, snapshot) {
-                if (!snapshot.hasData) {
-                  return Stack(
-                    children: [
-                      builLoading(),
-                      Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  );
-                  // return (Column(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: const [
-                  //     Center(
-                  //       child: CircularProgressIndicator(
-                  //         color: Colors.red,
-                  //       ),
-                  //     ),
-                  //     Text('Loadingg...')
-                  //   ],
-                  // ));
-                } else {
-                  final ListTicket? tickets = snapshot.data;
-                  return SafeArea(
-                    child: buildItem(ctx, tickets!),
-                  );
-                }
-              });
+          return buildItem(
+            ctt,
+          );
+          // return FutureBuilder<ListTicket>(
+          //     future: api.getAllTicket(),
+          //     builder: (ctx, snapshot) {
+          //       if (!snapshot.hasData) {
+          //         return Stack(
+          //           children: [
+          //             builLoading(),
+          //             Center(
+          //               child: CircularProgressIndicator(
+          //                 color: Colors.red,
+          //               ),
+          //             ),
+          //           ],
+          //         );
+          //         // return (Column(
+          //         //   mainAxisAlignment: MainAxisAlignment.center,
+          //         //   children: const [
+          //         //     Center(
+          //         //       child: CircularProgressIndicator(
+          //         //         color: Colors.red,
+          //         //       ),
+          //         //     ),
+          //         //     Text('Loadingg...')
+          //         //   ],
+          //         // ));
+          //       } else {
+          //         final ListTicket? tickets = snapshot.data;
+          //         return SafeArea(
+          //           child: buildItem(ctx, tickets!),
+          //         );
+          //       }
+          //     });
         } else {
           return Text('data ticket error');
         }
@@ -124,7 +127,8 @@ class _TicketScreenState extends State<TicketScreen> {
     );
   }
 
-  Widget buildItem(BuildContext context, ListTicket tickets) {
+  Widget buildItem(BuildContext context) {
+    //,(BuildContext context,ListTicket tickets)
     return Container(
       child: Column(
         children: [
@@ -133,13 +137,12 @@ class _TicketScreenState extends State<TicketScreen> {
               SizedBox(
                 width: 150.0,
               ),
-               
               Expanded(flex: 2, child: Item_DropDown(value: '')),
               Expanded(
                 flex: 1,
                 child: IconButton(
                     onPressed: () {
-                      Item_DropDown(value: 'null' );
+                      Item_DropDown(value: 'null');
                     },
                     icon: SvgPicture.asset(
                       'assets/icon/filter-home.svg',
@@ -176,6 +179,7 @@ class _TicketScreenState extends State<TicketScreen> {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ItemTicket(
+                  callback: () {},
                   title: 'Tin nhắn từ Facebook',
                   description: 'description',
                   dateTime: 'dateTime',
