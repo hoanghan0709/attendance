@@ -1,4 +1,3 @@
-  
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:midesk/bloc/login_bloc/login_bloc.dart';
@@ -6,13 +5,14 @@ import 'package:midesk/bloc/login_bloc/login_event.dart';
 import 'package:midesk/bloc/login_bloc/login_state.dart';
 import 'package:midesk/respository/user_repository.dart';
 import 'package:midesk/screen/assistant/camera_qrcode.dart';
+import 'package:midesk/screen/home_screen/home_screen.dart';
 import '../../theme/image.dart';
 import 'package:midesk/accessories/style/themes.dart' as Style;
-import 'package:flutter/cupertino.dart'; 
+import 'package:flutter/cupertino.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository userRepository;
-  LoginForm({  Key? key,   required this.userRepository})
+  LoginForm({Key? key, required this.userRepository})
       : assert(userRepository != null),
         super(key: key);
 
@@ -69,12 +69,12 @@ class _LoginFormState extends State<LoginForm> {
     _onLoginButtonPressed() {
       // ignore: avoid_print
       print(Urtext.text);
-      BlocProvider.of<LoginBloc>(context).add(
-        LoginButtonPressed(
-          username: Urtext.text,
-          password: Passkeys.text,
-        ),
-      );
+      // BlocProvider.of<LoginBloc>(context).add(
+      //   LoginButtonPressed(
+      //     username: Urtext.text,
+      //     password: Passkeys.text,
+      //   ),
+      // );
     }
 
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
@@ -184,6 +184,7 @@ class _LoginFormState extends State<LoginForm> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: const [
+                                          
                                           SizedBox(
                                             height: 25.0,
                                             width: 25.0,
@@ -200,7 +201,15 @@ class _LoginFormState extends State<LoginForm> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
-                                    onPressed: _onLoginButtonPressed,
+                                    onPressed:
+                                        //_onLoginButtonPressed,
+                                        () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => HomeScreen(),
+                                          ));
+                                    },
                                     child: const Text("LOG IN",
                                         style: TextStyle(
                                             fontSize: 12.0,

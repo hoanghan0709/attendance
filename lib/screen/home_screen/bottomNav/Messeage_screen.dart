@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -22,10 +21,10 @@ class _MessageScreenState extends State<MessageScreen> {
             Expanded(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                     left: 10.0, bottom: 10.0, top: 10.0, right: 15.0),
                 child: Row(children: [
-                  Expanded(
+                  const Expanded(
                     flex: 1,
                     child: Text(
                       'Messenger',
@@ -41,6 +40,7 @@ class _MessageScreenState extends State<MessageScreen> {
                         minHeight: 40.0,
                         minWidth: 55.0,
                         cornerRadius: 20.0,
+                        labels: ['', '', ''],
                         activeBgColors: [
                           [Colors.amber[800]!],
                           [Colors.green[800]!],
@@ -53,9 +53,9 @@ class _MessageScreenState extends State<MessageScreen> {
                         iconSize: 25.0,
                         totalSwitches: 3,
                         icons: const [
-                          FontAwesomeIcons.facebook,
-                          FontAwesomeIcons.venus,
-                          FontAwesomeIcons.transgender
+                          FontAwesomeIcons.message,
+                          FontAwesomeIcons.phone,
+                          FontAwesomeIcons.ticketSimple
                         ],
                         radiusStyle: true,
                         onToggle: (index) {
